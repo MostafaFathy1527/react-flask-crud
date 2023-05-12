@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 
 class PersonForm extends Component {
   state = {
-    name: '',
-    age: '',
-    gender: 'male', 
-    email: ''  
+        'id':'',
+        'name': '',
+        'age': '',
+        'gender': ''
+
   }
   
   handleChange = (event) => {
@@ -24,7 +25,7 @@ class PersonForm extends Component {
       name: '',
       age: '',
       gender: 'male',  
-      email: ''    
+
     })     
   }
   
