@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
 class PersonForm extends Component {
-  state = {
-        'id':'',
-        'name': '',
-        'age': '',
-        'gender': ''
+state = {
+  "age": "",
+  "gender": "",
+  "id": "",
+  "name": ""
+}
 
-  }
   
   handleChange = (event) => {
     const { name, value } = event.target
@@ -22,14 +22,17 @@ class PersonForm extends Component {
       this.props.onSubmit(this.state)      
     }     
     this.setState({
-      name: '',
-      age: '',
-      gender: 'male',  
-
+  "age": "",
+  "gender": "",
+  "id": "",
+  "name": ""
     })     
   }
   
   render() {
+  if (!this.props.person) {
+    return null; // or some other fallback UI
+  }
     return (    
       <form onSubmit={this.handleSubmit}>
         <input 
@@ -37,7 +40,7 @@ class PersonForm extends Component {
           value={this.state.name}
           onChange={this.handleChange} />
           
-        {/* Other form fields */}
+
       
         <button type="submit">          
           {this.props.person.id ? 'Update' : 'Add'} Person
