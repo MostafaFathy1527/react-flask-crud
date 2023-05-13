@@ -44,6 +44,19 @@ def delete_person(id):
     return jsonify({
         'success': 'Person deleted successfully!'    
     })
+@app.route('/persons/<int:id>', methods=['PUT'])
+def update_person(id):
+    person = request.get_json()
+        
+    # Update person with matching ID
+    for person in persons:
+        if person['id'] == id:
+            person['name'] = request.json['name']
+            person['age'] = request.json['age']
+            
+    return jsonify({
+        'success': 'Person updated successfully!'    
+    })
 
 # Add route for PUT /persons/<id> to update a person
 
