@@ -1,4 +1,3 @@
-# react-flask-crud
 
 <h1>React-Flask CRUD</h1>
 
