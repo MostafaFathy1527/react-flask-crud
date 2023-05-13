@@ -1,13 +1,20 @@
-FROM python:3.9-slim-buster
+
+FROM python:3.8-slim-buster
+
 
 WORKDIR /app
 
-COPY requirements.txt /app
 
-RUN pip install --trusted-host pypi.python.org -r requirements.txt
+COPY requirements.txt .
 
-COPY . /app
 
-EXPOSE 443
+RUN pip install --no-cache-dir -r requirements.txt
+
+
+COPY . .
+
+
+EXPOSE 5000
+
 
 CMD ["python", "app.py"]
