@@ -1,6 +1,5 @@
 import React from 'react';
 import Person from './Person';
-import App from '../App';
 
 const PersonList = (props) => {
   return (
