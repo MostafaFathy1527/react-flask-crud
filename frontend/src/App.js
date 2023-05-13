@@ -12,23 +12,26 @@ class App extends Component {
     this.getPersons();
   }
 
-  getPersons = () => {
-    fetch('/persons')
-      .then(res => res.json())
-      .then(persons => {
-        this.setState({ persons });
-      });
-  }
+getPersons = () => {
+  fetch('http://127.0.0.1:5000/persons')
+    .then(res => res.json())
+    .then(persons => {
+      this.setState({ persons });
+    })
+    .catch(error => console.error(error));
+}
 
-  addPerson = (person) => {
-    fetch('persons', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json' 
-      },
-      body: JSON.stringify(person)
-    }).then(res => this.getPersons());  
-  }
+addPerson = (person) => {
+  fetch('http://127.0.0.1:5000/persons', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json' 
+    },
+    body: JSON.stringify(person)
+  })
+    .then(res => this.getPersons())
+    .catch(error => console.error(error));
+}
   
   // updatePerson, deletePerson functions
 
@@ -43,3 +46,4 @@ class App extends Component {
 }
 
 export default App;
+

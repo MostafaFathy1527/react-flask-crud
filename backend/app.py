@@ -1,18 +1,22 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
+
 
 app = Flask(__name__)
+CORS(app)
 
 persons = [
     {   
-        "id": "12",
+        "id": "4",
         "name": "John",
         "age": "5",
         "gender": "Male"
-    },
+    }
+,
     {   
         "id": "52",
-        "name": "John",
-        "age": "5",
+        "name": "Johna",
+        "age": "54",
         "gender": "Male"
     }
 
@@ -28,14 +32,11 @@ def get_persons():
 
 @app.route('/persons', methods=['POST'])
 def add_person():
-
     person = request.get_json()
-    id = int(request.form["id"]) 
-    age = int(request.form["age"])
     persons.append(person)        
     return jsonify({
        'success': 'Person added successfully!' 
-    })
+    }), 201
 
 @app.route('/persons/<int:id>', methods=['DELETE'])
 def delete_person(id):
