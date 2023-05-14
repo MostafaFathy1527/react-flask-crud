@@ -8,25 +8,27 @@ function App() {
 
   const [persons, setUsers] = useState([]);
   const [editedUser, setEditedUser] = useState(null);
-
   useEffect(() => {
-    fetch('http://127.0.0.1:5000/persons', {
-      method: 'GET',
-      headers: {
-        'content-Type': 'application/json'
-      }
-    })
-      .then(resp => resp.json())
-      .then(data => {
-        if (data && data.persons) {
-          setUsers(data.persons);
-        } else {
-          console.error('Response is missing persons property.');
+    const delay = () => new Promise(resolve => setTimeout(resolve, 5000));
+  
+    delay().then(() => {
+      fetch('http://127.0.0.1:5000/persons', {
+        method: 'GET',
+        headers: {
+          'content-Type': 'application/json'
         }
       })
-      .catch(error => console.log(error))
+        .then(resp => resp.json())  
+        .then(data => {
+          if (data && data.persons) {
+            setUsers(data.persons);
+          } else {
+            console.error('Response is missing persons property.');
+          }
+        })
+        .catch(error => console.log(error))
+    });
   }, [])
-
   const editUser = (user) => {
     setEditedUser(user)
   }
